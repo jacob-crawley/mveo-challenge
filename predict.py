@@ -45,7 +45,7 @@ def predict_torch_metrics(config_file, log_dir, device):
     # Load datamodule and dataloader
     datamodule = DFC2022DataModule(**general_config.datamodule)
     datamodule.setup()
-    dataloader = datamodule.test_dataloader()  # batch size is 1
+    dataloader = datamodule.val_dataloader()  # batch size is 1
 
     pad = K.PadTo(size=(2048, 2048), pad_mode="constant", pad_value=0.0)
 
@@ -54,16 +54,15 @@ def predict_torch_metrics(config_file, log_dir, device):
     jaccard = torch.zeros(trained_params.num_classes).to(device)
     jaccard_metric = MulticlassJaccardIndex(num_classes=trained_params.num_classes,
                                             ignore_index=trained_params.ignore_index, average="none").to(device)
+    accuracy = []
+    accuracy_metric = MulticlassAccuracy(num_classes=trained_params.num_classes,
+                                         ignore_index=trained_params.ignore_index,
+                                         multidim_average="global",
+                                         average="micro").to(device)
 
-    # accuracy = []
-    # accuracy_metric = MulticlassAccuracy(num_classes=trained_params.num_classes,
-    #                                      ignore_index=trained_params.ignore_index,
-    #                                      multidim_average="global",
-    #                                      average="micro").to(device)
-
-    # confusion_matrix = None
-    # confusion_matrix_metric = MulticlassConfusionMatrix(num_classes=trained_params.num_classes,
-    #                                                     ignore_index=trained_params.ignore_index).to(device)
+    confusion_matrix = None
+    confusion_matrix_metric = MulticlassConfusionMatrix(num_classes=trained_params.num_classes,
+                                                        ignore_index=trained_params.ignore_index).to(device)
 
     for i, batch in tqdm(enumerate(dataloader), total=len(dataloader)):
         x = batch["image"].to(device)
@@ -74,26 +73,30 @@ def predict_torch_metrics(config_file, log_dir, device):
         preds = rearrange(preds, "c h w -> (h w) c")
         target = batch["mask"].to(device).flatten()
         # print(preds.get_device(), target.get_device())
+        preds = preds.flatten()
+        if preds.shape[0] > target.shape[0]:
+            preds = preds [:target.shape[0]]
         # print(preds.shape, target.shape)  # torch.Size([4002000, 16]) torch.Size([4002000])
-
-        # accuracy.append(accuracy_metric(preds, target).item())
+        accuracy.append(accuracy_metric(preds, target).item())
         jaccard += jaccard_metric(preds, target)  # adding the IoU per class
-        # if confusion_matrix is None:
-        #     confusion_matrix = confusion_matrix_metric(preds, target)
-        # else:
-        #     confusion_matrix += confusion_matrix_metric(preds, target)
+        if confusion_matrix is None:
+            confusion_matrix = confusion_matrix_metric(preds, target)
+        else:
+            confusion_matrix += confusion_matrix_metric(preds, target)
 
     # print(len(accuracy), len(jaccard))  # 300 300
 
     ave_jac = jaccard / len(dataloader)  # average IoU per class
     ave_jac_specific_classes = torch.index_select(ave_jac, 0, indices)  # get the 12 classes
-    # print(ave_jac)
+   
+    print("Average Jaccard Per Class = {}".format(ave_jac))
     print(ave_jac_specific_classes)
-    print(torch.mean(ave_jac_specific_classes))  # calculate the final average
-    # print(torch.std(ave_jac_specific_classes))
+    print("Overall Average = {}".format(torch.mean(ave_jac_specific_classes)))  # calculate the final average
+    print("Standard Deviation (Jaccard) = {}".format(torch.std(ave_jac_specific_classes)))
 
-    # print(np.mean(accuracy), np.std(accuracy))
-    # print(confusion_matrix)
+    print("Mean Accuracy = {}, Accuracy Standard Dev. = {}".format(np.mean(accuracy), np.std(accuracy)))
+    print("Confusion Matrix:\n")
+    print(confusion_matrix)
 
 
 if __name__ == "__main__":
