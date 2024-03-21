@@ -1,0 +1,43 @@
+/fastdata/acc19jc/lib/python3.9/site-packages/scipy/__init__.py:138: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.26.4)
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion} is required for this version of "
+/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Running on Training log: lightning_logs/version_3498202/
+
+check average score 1.0
+train 7700
+check average score 1.0
+train_val 76
+test 0
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:36<02:24, 36.14s/it] 20%|██        | 1/5 [00:37<02:29, 37.46s/it]
+[-15.984756  -15.984256  -15.979622  ...   5.2685843   5.2719254
+   5.2738175]
+(1031082,)
+[-21.739916 -21.736612 -21.732368 ...   8.078811   8.082951   8.083113]
+(1030159,)
+Traceback (most recent call last):
+  File "/mnt/fastdata/acc19jc/mveo-challenge/predict.py", line 116, in <module>
+    predict_torch_metrics(args.config_file, args.log_dir, args.device)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/mnt/fastdata/acc19jc/mveo-challenge/predict.py", line 83, in predict_torch_metrics
+    jaccard += jaccard_metric(preds, target)  # adding the IoU per class
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/metric.py", line 303, in forward
+    self._forward_cache = self._forward_reduce_state_update(*args, **kwargs)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/metric.py", line 372, in _forward_reduce_state_update
+    self.update(*args, **kwargs)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/metric.py", line 475, in wrapped_func
+    raise err
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/metric.py", line 465, in wrapped_func
+    update(*args, **kwargs)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/classification/confusion_matrix.py", line 280, in update
+    confmat = _multiclass_confusion_matrix_update(preds, target, self.num_classes)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/functional/classification/confusion_matrix.py", line 336, in _multiclass_confusion_matrix_update
+    bins = _bincount(unique_mapping, minlength=num_classes**2)
+  File "/fastdata/acc19jc/lib/python3.9/site-packages/torchmetrics/utilities/data.py", line 207, in _bincount
+    return torch.bincount(x, minlength=minlength)
+RuntimeError: bincount only supports 1-d non-negative integral inputs.

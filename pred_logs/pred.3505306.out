@@ -1,0 +1,62 @@
+/fastdata/acc19jc/lib/python3.9/site-packages/scipy/__init__.py:138: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.26.4)
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion} is required for this version of "
+/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Running on Training log: lightning_logs/version_3500776/
+
+check average score 0.8767394736842279
+train 19000
+check average score 1.0
+train_val 76
+test 0
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:42<02:51, 42.78s/it] 40%|████      | 2/5 [00:43<00:54, 18.15s/it] 60%|██████    | 3/5 [00:44<00:20, 10.28s/it] 80%|████████  | 4/5 [00:45<00:06,  6.57s/it]100%|██████████| 5/5 [00:46<00:00,  4.50s/it]100%|██████████| 5/5 [00:46<00:00,  9.30s/it]
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+Average Jaccard Per Class = tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       device='cuda:0')
+tensor([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.], device='cuda:0')
+Overall Average = 0.0
+Standard Deviation (Jaccard) = 0.0
+Confusion Matrix:
+
+tensor([[     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [  6733,  12443,  14433,  13535,  10593,   7244,   8281,   7474,  15640,
+          22324,  29732,  25274,  13804,  12446,   6605,  32327],
+        [  7283,   9117,  19237,  19584,  11921,   7333,   6681,   8120,  12208,
+          18491,  25134,  30645,  14849,  14961,  14231,  37364],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [  5279,   3227,   3036,   4503,    902,   2238,   2621,    580,   2175,
+           5699,   6353,   7943,   7198,   3029,   4472,  11474],
+        [  9653,  18339,  23398,  25551,  15082,   9025,   5912,  10644,  25159,
+          33364,  45386,  33187,  15092,  14449,  16327,  50161],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [ 38776,  49505,  85654,  89461,  64057,  35353,  37417,  35231,  72547,
+         126281, 159844, 129764,  86034,  68795,  46244, 183100],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [ 34680,  33746,  52165,  48310,  32636,  15775,  24121,  31168,  43410,
+          73789,  92756,  73687,  67380,  39430,  36256, 123577],
+        [ 20188,  23603,  28924,  19053,  16757,   8815,  12168,  20069,  27876,
+          36605,  40892,  35928,  20530,  21616,  19975,  62209],
+        [ 15521,  10032,  12662,  18527,   9350,   3827,   6706,   5231,  12339,
+          22066,  20731,  14681,  10944,  11683,  15355,  30470],
+        [  2793,   1700,   3153,   1575,   1321,    813,   1281,   3475,   2211,
+           4746,   4489,   4140,   1763,   2669,   2081,   7483],
+        [   248,    375,   1351,   1263,   1174,    868,    531,    828,   1301,
+           2095,   4464,   2690,   1414,    648,    500,   2872],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0]],
+       device='cuda:0')

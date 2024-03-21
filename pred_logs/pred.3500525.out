@@ -1,0 +1,54 @@
+/fastdata/acc19jc/lib/python3.9/site-packages/scipy/__init__.py:138: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.26.4)
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion} is required for this version of "
+/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Running on Training log: lightning_logs/version_3498203/
+
+check average score 1.0
+train 7700
+check average score 1.0
+train_val 76
+test 0
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:13<00:54, 13.61s/it] 40%|████      | 2/5 [00:14<00:18,  6.15s/it] 60%|██████    | 3/5 [00:15<00:07,  3.76s/it] 80%|████████  | 4/5 [00:16<00:02,  2.64s/it]100%|██████████| 5/5 [00:17<00:00,  1.99s/it]100%|██████████| 5/5 [00:17<00:00,  3.46s/it]
+Average Jaccard Per Class = tensor([0.0010, 0.0432, 0.0313, 0.0009, 0.0139, 0.0108, 0.0808, 0.0027, 0.0000,
+        0.0385, 0.0271, 0.0078, 0.0000, 0.0096, 0.0000, 0.0000],
+       device='cuda:0')
+tensor([0.0432, 0.0313, 0.0009, 0.0139, 0.0108, 0.0808, 0.0027, 0.0271, 0.0078,
+        0.0000, 0.0096, 0.0000], device='cuda:0')
+Overall Average = 0.018996436148881912
+Standard Deviation (Jaccard) = 0.02382439747452736
+Confusion Matrix:
+
+tensor([[   723,   1667,   5008,   2679,   3337,   8817,  18041,  21537,  15650,
+           7406,   5515,   7379,  17211,  22277,  28488,  33115],
+        [ 48869,  19074,  10510,  13519,  12258,  13930,  22198,  20743,  11185,
+          12493,  13268,   8032,  15850,  16357,  17204,  39831],
+        [ 35638,  12464,   7715,   7681,   2529,   4316,   8746,    948,    257,
+            145,    243,    194,    370,    711,    656,    943],
+        [  1021,    427,    354,    148,    151,    502,   1904,   3247,   3354,
+            850,    126,   1269,   2087,   3115,   3540,   5128],
+        [  9181,   4724,   5908,  10006,   8908,  16520,  31626,  34773,  21352,
+           9536,  11786,  12999,  26829,  38764,  36646,  46612],
+        [ 58087,  16666,  11831,  11714,   4144,   4343,   6328,    193,    120,
+            105,    311,     32,      9,    186,     20,   1957],
+        [  6443,  10981,  17789,  20914,  45914,  59427,  89861,  90718,  49977,
+          37030,  54099,  42065,  62328,  92124, 102228, 146546],
+        [210491,  60840,  35836,  34210,   9120,  12268,  20732,   1692,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,    747,   1522],
+        [  6099,   5498,   6738,  16386,  38660,  33317,  45879,  43742,  37504,
+          28259,  35980,  20328,  34963,  54037,  53912,  97021],
+        [132907,  44118,  24939,  23803,  27237,  31679,  44454,  24112,  16239,
+          11640,  23717,  12271,  15944,  26198,  30325,  44028],
+        [ 70431,  25567,  13003,  11316,  10361,  14720,  19939,  17630,  14310,
+          12429,   7118,   3864,   7359,  22068,  19678,  23266],
+        [ 23639,   6536,  10542,   6885,   2351,   1428,   3643,    461,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,    445,   1738,   2646,   4080,   2408,
+            739,   1107,   1814,   3500,   5037,   5087,   3652],
+        [  5240,   2005,   1065,   1778,    578,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0]],
+       device='cuda:0')

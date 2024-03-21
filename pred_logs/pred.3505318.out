@@ -1,0 +1,94 @@
+/fastdata/acc19jc/lib/python3.9/site-packages/scipy/__init__.py:138: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.26.4)
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion} is required for this version of "
+/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+Running on Training log: lightning_logs/version_3500776/
+
+check average score 0.8767394736842279
+train 19000
+check average score 1.0
+train_val 76
+test 0
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:51<03:25, 51.32s/it] 40%|████      | 2/5 [00:52<01:04, 21.66s/it] 60%|██████    | 3/5 [00:53<00:24, 12.19s/it] 80%|████████  | 4/5 [00:54<00:07,  7.73s/it]100%|██████████| 5/5 [00:54<00:00,  5.24s/it]100%|██████████| 5/5 [00:55<00:00, 11.00s/it]
+Unique values in preds after scaling: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+
+Preds:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(15, device='cuda:0')
+
+Target:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(11, device='cuda:0')
+Unique values in preds after scaling: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+
+Preds:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(15, device='cuda:0')
+
+Target:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(12, device='cuda:0')
+Unique values in preds after scaling: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+
+Preds:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(15, device='cuda:0')
+
+Target:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(11, device='cuda:0')
+Unique values in preds after scaling: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+
+Preds:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(15, device='cuda:0')
+
+Target:
+cuda:0 torch.int64 torch.Size([65536, 16]) tensor(0, device='cuda:0') tensor(12, device='cuda:0')
+Unique values in preds after scaling: tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
+       device='cuda:0')
+
+Preds:
+cuda:0 torch.int64 torch.Size([65536, 12]) tensor(0, device='cuda:0') tensor(15, device='cuda:0')
+
+Target:
+cuda:0 torch.int64 torch.Size([65536, 12]) tensor(0, device='cuda:0') tensor(11, device='cuda:0')
+Average Jaccard Per Class = tensor([0.0000, 0.0262, 0.0283, 0.0000, 0.0093, 0.0396, 0.0000, 0.0761, 0.0000,
+        0.0000, 0.0422, 0.0196, 0.0134, 0.0000, 0.0000, 0.0000],
+       device='cuda:0')
+tensor([0.0262, 0.0283, 0.0000, 0.0093, 0.0396, 0.0000, 0.0761, 0.0422, 0.0196,
+        0.0134, 0.0000, 0.0000], device='cuda:0')
+Overall Average = 0.02121812477707863
+Standard Deviation (Jaccard) = 0.023106856271624565
+Confusion Matrix:
+
+tensor([[     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [  1887,  12072,  16522,  12314,  10574,  11478,   9816,  27229,  26317,
+          23521,  11410,   7200,   6134,  12133,  13447,      0],
+        [  1246,   8448,  17127,  29176,  30801,  26314,  17539,  31097,  48735,
+          51014,  40758,  12770,  10974,  17191,  23631,      1],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [    41,    383,   2688,   2638,   5642,   6724,   1062,   3769,   5610,
+           5205,   9023,   6838,   5541,   2269,   1928,      0],
+        [   467,   5903,  16648,  22303,  18810,  25000,  18334,  36125,  43634,
+          36996,  30405,   7986,  10102,  17887,  13785,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [  3449,  24601,  80395, 117837, 120738, 118889,  82810, 139641, 212605,
+         210471, 172375,  69766,  62435,  93219,  67644,      1],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [  3343,  21729,  61928,  66939,  51185,  43888,  52935,  99281, 115723,
+         115158,  47728,  26383,  29623,  38586,  45622,      2],
+        [   585,   3527,  18043,  32901,  30746,  27573,  19432,  34184,  45304,
+          65521,  37254,  12880,  13483,  23063,  15289,      0],
+        [    43,   1229,   4822,   9461,  18687,  20936,  12120,  14537,  19334,
+          25074,  26710,  16299,  10738,  12992,   3625,      1],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0]],
+       device='cuda:0')

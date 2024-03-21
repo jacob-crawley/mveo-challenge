@@ -1,0 +1,74 @@
+/fastdata/acc19jc/lib/python3.9/site-packages/scipy/__init__.py:138: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.26.4)
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion} is required for this version of "
+/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+check average score 1.0
+train 770
+check average score 1.0
+train_val 76
+test 0
+### Data loaded #######
+Dataloader length == 5
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:20<01:21, 20.47s/it] 40%|████      | 2/5 [00:21<00:26,  8.96s/it] 60%|██████    | 3/5 [00:22<00:10,  5.28s/it] 80%|████████  | 4/5 [00:23<00:03,  3.55s/it]100%|██████████| 5/5 [00:23<00:00,  2.56s/it]100%|██████████| 5/5 [00:24<00:00,  4.83s/it]
+---- Batch 0 ----
+PREDS:
+
+torch.Size([1048576]) torch.Size([1048576])
+---- Batch 1 ----
+PREDS:
+
+torch.Size([1048576]) torch.Size([1048576])
+---- Batch 2 ----
+PREDS:
+
+torch.Size([1048576]) torch.Size([1048576])
+---- Batch 3 ----
+PREDS:
+
+torch.Size([1048576]) torch.Size([1048576])
+---- Batch 4 ----
+PREDS:
+
+torch.Size([786432]) torch.Size([786432])
+Average Jaccard Per Class = tensor([0.0000e+00, 3.2482e-02, 2.5682e-02, 0.0000e+00, 1.3537e-02, 4.7669e-03,
+        0.0000e+00, 0.0000e+00, 0.0000e+00, 5.1498e-02, 2.2111e-02, 4.0637e-02,
+        4.2252e-06, 0.0000e+00, 0.0000e+00, 0.0000e+00], device='cuda:0')
+tensor([3.2482e-02, 2.5682e-02, 0.0000e+00, 1.3537e-02, 4.7669e-03, 0.0000e+00,
+        0.0000e+00, 2.2111e-02, 4.0637e-02, 4.2252e-06, 0.0000e+00, 0.0000e+00],
+       device='cuda:0')
+Overall Average = 0.011601552367210388
+Standard Deviation = 0.014910761266946793
+0.0 0.0
+tensor([[     0,      0,      0,      0,      0,      0,      0,      0,  12983,
+          17650,  24903,  40740,  44548,  37131,  50518,  51492],
+        [ 51435,  11687,  10412,  18759,  11624,   6100,      0,      0,  11886,
+          11098,  14424,  20580,  26047,  19723,  27083,  27454],
+        [ 24522,   4263,   4211,   9983,   7655,   4792,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,   2261,
+           2452,   6057,  17104,  13060,   8640,  14165,  11577],
+        [ 19025,   2829,   5328,   4690,   4599,    573,      0,      0,   1613,
+          22529,  26611,  35432,  38083,  34020,  54570,  57711],
+        [ 50616,   8030,  11938,  18776,  12918,    703,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,  20927,
+          60228,  72117, 135410, 165880, 100726, 152065, 164846],
+        [168881,  31450,  40354,  65510,  43990,   7230,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,  24549,
+          48542,  68726, 102472, 129762,  85847, 126172, 133031],
+        [129078,  21189,  28194,  51124,  37903,   8935,      0,      0,   5284,
+           9980,  16320,  20232,  27290,  14746,  31110,  29230],
+        [ 26281,   8658,   8052,  10416,   5902,   1465,      0,      0,  10167,
+          21413,  18376,  35507,  45923,  24677,  34855,  35970],
+        [ 38730,   6339,   7843,  17713,  12120,   5636,      0,      0,      0,
+              0,      0,      0,      4,      2,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0]],
+       device='cuda:0')

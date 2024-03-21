@@ -14,6 +14,7 @@ from einops import rearrange
 
 from torchgeo.trainers import SemanticSegmentationTask
 from datamodule import DFC2022DataModule
+import torch.nn.functional as F
 
 
 def write_mask(mask, path, output_dir):
@@ -27,7 +28,6 @@ def write_mask(mask, path, output_dir):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with rasterio.open(output_path, "w", **profile) as dst:
         dst.write(mask, 1)
-
 
 @torch.no_grad()
 def predict_torch_metrics(config_file, log_dir, device):
@@ -71,20 +71,31 @@ def predict_torch_metrics(config_file, log_dir, device):
         preds = task(x)
         preds = preds[0, :, :h, :w]
         preds = rearrange(preds, "c h w -> (h w) c")
-        target = batch["mask"].to(device).flatten()
-        # print(preds.get_device(), target.get_device())
-        preds = preds.flatten()
-        if preds.shape[0] > target.shape[0]:
-            preds = preds [:target.shape[0]]
-        # print(preds.shape, target.shape)  # torch.Size([4002000, 16]) torch.Size([4002000])
-        accuracy.append(accuracy_metric(preds, target).item())
+        target = batch["mask"].to(device)
+
+        target = target.view(preds.shape[0], -1)       
+        
+        if preds.shape[1] != target.shape[1]:
+            preds = preds[:, : target.shape[1]]
+
+        # Normalise the predictions 
+        preds_min = preds.min()
+        preds_max = preds.max()
+        normalized_preds = (preds - preds_min) / (preds_max - preds_min)
+
+        # Scale the normalized predictions to the range [0, 15]
+        scaled_preds = (normalized_preds * 15).long() 
+
+        preds = scaled_preds
+        
         jaccard += jaccard_metric(preds, target)  # adding the IoU per class
         if confusion_matrix is None:
             confusion_matrix = confusion_matrix_metric(preds, target)
         else:
             confusion_matrix += confusion_matrix_metric(preds, target)
 
-    # print(len(accuracy), len(jaccard))  # 300 300
+        accuracy.append(accuracy_metric(preds, target).item())
+
 
     ave_jac = jaccard / len(dataloader)  # average IoU per class
     ave_jac_specific_classes = torch.index_select(ave_jac, 0, indices)  # get the 12 classes
@@ -98,7 +109,6 @@ def predict_torch_metrics(config_file, log_dir, device):
     print("Confusion Matrix:\n")
     print(confusion_matrix)
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--config_file", type=str, required=True, help="Path to config.yaml file")
@@ -107,4 +117,8 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=str, default="cuda", choices=["cuda", "cpu"])
     args = parser.parse_args()
 
+    print("Running on Training log: {}\n".format(args.log_dir))
     predict_torch_metrics(args.config_file, args.log_dir, args.device)
+
+
+       

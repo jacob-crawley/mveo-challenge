@@ -1,0 +1,54 @@
+/fastdata/acc19jc/lib/python3.9/site-packages/scipy/__init__.py:138: UserWarning: A NumPy version >=1.16.5 and <1.23.0 is required for this version of SciPy (detected version 1.26.4)
+  warnings.warn(f"A NumPy version >={np_minversion} and <{np_maxversion} is required for this version of "
+/fastdata/acc19jc/lib/python3.9/site-packages/torch/utils/data/dataloader.py:558: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+check average score 1.0
+train 38500
+check average score 1.0
+train_val 76
+test 0
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:54<03:38, 54.65s/it] 40%|████      | 2/5 [00:55<01:09, 23.03s/it] 60%|██████    | 3/5 [00:56<00:25, 12.93s/it] 80%|████████  | 4/5 [00:57<00:08,  8.18s/it]100%|██████████| 5/5 [00:58<00:00,  5.52s/it]100%|██████████| 5/5 [00:58<00:00, 11.66s/it]
+Average Jaccard Per Class = tensor([0.0000e+00, 2.6590e-02, 1.2133e-02, 0.0000e+00, 1.0260e-02, 1.9938e-02,
+        0.0000e+00, 0.0000e+00, 0.0000e+00, 4.4536e-02, 4.4179e-02, 2.8562e-02,
+        4.2151e-03, 2.9976e-05, 0.0000e+00, 0.0000e+00], device='cuda:0')
+tensor([2.6590e-02, 1.2133e-02, 0.0000e+00, 1.0260e-02, 1.9938e-02, 0.0000e+00,
+        0.0000e+00, 4.4179e-02, 2.8562e-02, 4.2151e-03, 2.9976e-05, 0.0000e+00],
+       device='cuda:0')
+Overall Average = 0.012158872559666634
+Standard Deviation (Jaccard) = 0.014673055149614811
+Mean Accuracy = 0.0, Accuracy Standard Dev. = 0.0
+Confusion Matrix:
+
+tensor([[     0,      0,      0,      0,      0,      0,      0,   1731,  14819,
+          16751,  35831,  59563,  34336,  33750,  41019,  51826],
+        [ 73982,   8691,   9356,  11230,  17209,  12584,    483,    631,   4773,
+           5807,  13567,  20465,   9964,  10236,  12954,  16385],
+        [ 24942,   2194,   1885,   3978,   5859,   4988,    219,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,    214,   1141,
+           6480,   8233,  11200,  11746,   6334,  14948,  14191],
+        [ 11270,   2861,   1240,   4799,   3384,   2657,      0,    246,   5308,
+          12905,  16063,  19070,  19327,  17685,  21878,  30563],
+        [ 26434,   2804,   4444,   7032,   8323,   4452,      5,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,   5148,  43119,
+          63656, 128781, 187478, 121990, 127650, 146539, 204242],
+        [223297,  24965,  34471,  49892,  55953,  38722,   2095,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,   1342,  15064,
+          28597,  59439,  89598,  74310,  77034,  86008, 114183],
+        [107556,  20491,  27171,  29092,  26900,  11174,     48,   1153,  10693,
+          16544,  37108,  50064,  41692,  40452,  45797,  66798],
+        [ 53647,   8924,  15738,  15246,  15727,   9120,    167,      0,   7088,
+           7679,  20044,  29339,  20393,  16534,  16815,  22215],
+        [ 40734,    927,   3531,   5984,  11043,   6340,      0,     45,    336,
+            464,   1359,   2532,   1110,   1638,   2424,   2354],
+        [  3143,    171,    500,    521,    664,    331,     24,      0,      0,
+              0,      7,     15,      3,      8,      5,     15],
+        [    12,      0,      4,      2,      2,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0],
+        [     0,      0,      0,      0,      0,      0,      0,      0,      0,
+              0,      0,      0,      0,      0,      0,      0]],
+       device='cuda:0')

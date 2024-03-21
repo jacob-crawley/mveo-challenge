@@ -17,10 +17,10 @@ learning:
     ignore_index: 0  # classes 0 & 15 are not used in scoring
 datamodule:
     root_dir: "/fastdata/acc19jc/mveo-dataset"
-    train_coordinate_file_path: "train_coordinate_list.txt"
+    train_coordinate_file_path: "random_coordinate_list.txt"
     # 1% =~ 770, 10% =~ 7700, 25% =~ 19000, 50% =~ 38500
-    training_sample_amount: 38500  # 77133 is the total number of training samples
+    training_sample_amount: 19000  # 77133 is the total number of training samples
     val_image_file_path: "val_image_list.txt"
-    batch_size: 16
+    batch_size: 16 # CHANGE TO 16 IF YOU'RE RUNNING predict.py
     num_workers: 8
     patch_size: 256
