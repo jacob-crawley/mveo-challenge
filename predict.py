@@ -30,7 +30,7 @@ def write_mask(mask, path, output_dir):
         dst.write(mask, 1)
 
 @torch.no_grad()
-def predict_torch_metrics(config_file, log_dir, device):
+def predict_torch_metrics(config_file, log_dir, device, write_masks):
     general_config = OmegaConf.load(config_file)
 
     # Load checkpoint and config
@@ -63,6 +63,9 @@ def predict_torch_metrics(config_file, log_dir, device):
     confusion_matrix = None
     confusion_matrix_metric = MulticlassConfusionMatrix(num_classes=trained_params.num_classes,
                                                         ignore_index=trained_params.ignore_index).to(device)
+    
+    preds_min = 0.0
+    preds_max = 0.0
 
     for i, batch in tqdm(enumerate(dataloader), total=len(dataloader)):
         x = batch["image"].to(device)
@@ -70,6 +73,7 @@ def predict_torch_metrics(config_file, log_dir, device):
         x = pad(x)
         preds = task(x)
         preds = preds[0, :, :h, :w]
+        mask = preds.argmax(dim=0).cpu().numpy()
         preds = rearrange(preds, "c h w -> (h w) c")
         target = batch["mask"].to(device)
 
@@ -78,9 +82,13 @@ def predict_torch_metrics(config_file, log_dir, device):
         if preds.shape[1] != target.shape[1]:
             preds = preds[:, : target.shape[1]]
 
-        # Normalise the predictions 
-        preds_min = preds.min()
-        preds_max = preds.max()
+        # Normalise the predictions
+        if preds.min() < preds_min: 
+            preds_min = preds.min()
+
+        if preds.max() > preds_max:
+            preds_max = preds.max()
+
         normalized_preds = (preds - preds_min) / (preds_max - preds_min)
 
         # Scale the normalized predictions to the range [0, 15]
@@ -95,6 +103,11 @@ def predict_torch_metrics(config_file, log_dir, device):
             confusion_matrix += confusion_matrix_metric(preds, target)
 
         accuracy.append(accuracy_metric(preds, target).item())
+
+        if write_masks:
+            # Write prediction masks
+            filename = datamodule.val_dataset.files[i]["image"]
+            write_mask(mask, filename, "/fastdata/acc19jc/mveo-challenge/mask_outputs")
 
 
     ave_jac = jaccard / len(dataloader)  # average IoU per class
@@ -118,7 +131,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("Running on Training log: {}\n".format(args.log_dir))
-    predict_torch_metrics(args.config_file, args.log_dir, args.device)
+
+    # Change the last argument depending on if you want to see the predicted outputs 
+    # (make a dir called mask_outputs first!)
+    predict_torch_metrics(args.config_file, args.log_dir, args.device, True)
 
 
        
